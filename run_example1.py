@@ -1,4 +1,4 @@
-from geneticalgorithm_example import *
+from geneticalgorithm_example1 import *
 target = 371
 p_count = 100
 i_length = 6

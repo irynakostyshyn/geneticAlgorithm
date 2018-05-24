@@ -4,7 +4,6 @@
 #include <string>
 #include <bitset>
 #include <atomic>
-
 #include <vector>
 #include <ctime>
 #include <cmath>
@@ -58,7 +57,7 @@ typedef struct individ {
 typedef vector <individuals> Tpopulation;
 
 void individuals::set_probability(long double sumOfFitness_value, long double min_value) {
-    // #cout << "MIN:" << min_value << "Sum:"<< sumOfFitness_value << "Fit:" << fitness_value << endl;
+    // cout << "MIN:" << min_value << "Sum:"<< sumOfFitness_value << "Fit:" << fitness_value << endl;
     probability_of_selection = 100 * max((fitness_value - min_value), (long double) 0.0) / sumOfFitness_value;
 }
 
@@ -78,7 +77,7 @@ void setFitnessValue_forAll(Tpopulation &population) {
         if (p.fitness_value >= min_value) {
             sumOfFitness_value += (p.fitness_value - min_value);
         } else {
-            // #cout << "Min val:" << min_value << endl;
+            // cout << "Min val:" << min_value << endl;
 
             sumOfFitness_value += (min_value - p.fitness_value) * (number_of_repetitions-1);
             min_value = p.fitness_value;
@@ -121,18 +120,18 @@ void mutation(individuals &individ) {
 //Roulette wheel method using the probability
 individuals selectIndividual(Tpopulation population) {//select to crossover (natural selection)
     double sum = 0.0;
-    // #cout << "Counting ";
+    // cout << "Counting ";
     for (auto p:population) {
-        // #cout << p.probability_of_selection << " ";
+        // cout << p.probability_of_selection << " ";
         sum += p.probability_of_selection;
     }
-    // #cout << endl << "The sum was:" << sum << endl;
+    // cout << endl << "The sum was:" << sum << endl;
     if ((int) sum == 0) {
-        // #cout << "It was zero" << sum << endl;
+        // cout << "It was zero" << sum << endl;
         sum = 1.0;
     }
     double selectedValue = rand() % 100;
-    // #cout << "SelectedValue:"  << selectedValue << ":::"<<(int)sum<<endl;
+    // cout << "SelectedValue:"  << selectedValue << ":::"<<(int)sum<<endl;
     double aux = 0.0;//used to sum fitness value
 
     for (auto p:population) {
@@ -187,22 +186,22 @@ int main(int argc, char *argv[]) {
 
 
     Tpopulation population;
-    int size_of_population=50;
-    // #cout << "Type the population size: ";
+    int size_of_population=6;
+    // cout << "Type the population size: ";
 //    cin >> size_of_population;
     population = generatePopulation(size_of_population);
 
     for (auto p:population) {
         long double x = p.chromossome.to_ulong() * step + lowerBound;
-        // #cout << "chromossome: " << p.chromossome << " fitness_value: " << p.fitness_value << " probability: "
+        // cout << "chromossome: " << p.chromossome << " fitness_value: " << p.fitness_value << " probability: "
           //   << p.probability_of_selection << " x = " << x << " f(x) = " << f(x) << endl;
     }
 
-    int numberOfGeneration = 0, generations=100000;
+    int numberOfGeneration = 0, generations=10000;
     Tpopulation newPopulation;
-    // #cout << "Type number of generation you want: " << endl;
+    // cout << "Type number of generation you want: " << endl;
 //    cin >> generations;
-    // #cout << generations;
+    // cout << generations;
 
     while (numberOfGeneration < generations) {
         population = crossover(population);
@@ -213,9 +212,9 @@ int main(int argc, char *argv[]) {
 
     for (auto p:population) {
         long double x = p.chromossome.to_ulong() * step + lowerBound;
-        // #cout << "chromossome: " << p.chromossome << " fitness_value: " << p.fitness_value << " probability: "
+        // cout << "chromossome: " << p.chromossome << " fitness_value: " << p.fitness_value << " probability: "
           //   << p.probability_of_selection << " x = " << x << " f(x) = " << f(x) << endl;
-        // #cout << x << " " << f(x) << endl;
+        // cout << x << " " << f(x) << endl;
     }
     auto time_ = get_current_time_fenced() - time;
     cout << to_us(time_) << endl;

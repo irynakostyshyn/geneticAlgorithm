@@ -186,7 +186,7 @@ int main(int argc, char *argv[]) {
 
 
     Tpopulation population;
-    int size_of_population=6;
+    int size_of_population=10000;
     // cout << "Type the population size: ";
 //    cin >> size_of_population;
     population = generatePopulation(size_of_population);
@@ -197,7 +197,7 @@ int main(int argc, char *argv[]) {
           //   << p.probability_of_selection << " x = " << x << " f(x) = " << f(x) << endl;
     }
 
-    int numberOfGeneration = 0, generations=10000;
+    int numberOfGeneration = 0, generations=10;
     Tpopulation newPopulation;
     // cout << "Type number of generation you want: " << endl;
 //    cin >> generations;

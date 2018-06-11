@@ -243,9 +243,7 @@ Tpopulation crossover(Tpopulation &population) {
                min(step, numberOfCrosses)).join();
         numberOfCrosses -= step;
     }
-    for (int i = 0; i < myThreads.size(); i++) {
-//        myThreads[i].join();
-    }
+
 
     return new_population;
 }
@@ -260,7 +258,7 @@ int main(int argc, char *argv[]) {
     auto time = get_current_time_fenced();
 
     Tpopulation population;
-    int size_of_population = 6;
+    int size_of_population = 10000;
     // cout << "Type the population size: ";
 //    cin >> size_of_population;
     population = generatePopulation(size_of_population);
@@ -271,7 +269,7 @@ int main(int argc, char *argv[]) {
 //          << p.probability_of_selection << " x = " << x << " f(x) = " << f(x) << endl;
     }
 
-    int numberOfGeneration = 0, generations = 10000;
+    int numberOfGeneration = 0, generations = 10;
     // cout << "Type number of generation you want: " << endl;
 //    cin >> generations;
     // cout << generations;
@@ -290,7 +288,7 @@ int main(int argc, char *argv[]) {
          // cout << x << " " << f(x) << endl;
     }
     auto time_ = get_current_time_fenced() - time;
-    // cout << to_us(time_) << endl;
+    cout << to_us(time_) << endl;
 
     return 0;
 }

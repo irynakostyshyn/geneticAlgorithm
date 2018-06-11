@@ -322,7 +322,7 @@ int main(int argc, char *argv[]) {
 
     Tpopulation population;
 
-    int size_of_population = 10000;
+    int size_of_population = 100;
 
     // cout << "Type the population size: ";
 //    cin >> size_of_population;

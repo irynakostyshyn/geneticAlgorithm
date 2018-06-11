@@ -118,20 +118,20 @@ void update_fitness_values(Tpopulation &population) {
     long long number_of_repetitions = 0;
     long double sum_fitness_values = 0.0;
 
-    int threads_num = 4;
+    int threads_num = 2;
     vector <thread> myThreads;
     int cur_ind = 0;
     int step = (population.size() + threads_num - 1) / threads_num;
 
     for (int i = 0; i < threads_num; i++) {
-        thread(update_fitnes_wrapper, std::ref(population), cur_ind,
-               min(cur_ind + step, (int) population.size())).join();
+        myThreads.push_back(thread(update_fitnes_wrapper, std::ref(population), cur_ind,
+               min(cur_ind + step, (int) population.size())));
         cur_ind += step;
     }
 //
-//    for(int i=0; i < threads_num; i++) {
-//        myThreads[i].join();
-//    }
+    for(int i=0; i < myThreads.size(); i++) {
+        myThreads[i].join();
+    }
 
     min_value;
     bool min_value_set = false;
@@ -258,7 +258,7 @@ void sub_cross(Tpopulation &population, Tpopulation &put, mutex &m, int n) {
 }
 
 //Method: Mult Point Crossover
-Tpopulation crossover(Tpopulation &population) {
+Tpopulation __crossover(Tpopulation &population) {
     Tpopulation new_population;
     int numberOfCrosses = population.size() / 2;
     while (numberOfCrosses > 0) {
@@ -292,10 +292,10 @@ Tpopulation crossover(Tpopulation &population) {
 }
 
 //Method: Mult Point Crossover
-Tpopulation __crossover(Tpopulation &population) {
+Tpopulation crossover(Tpopulation &population) {
     Tpopulation new_population;
     int numberOfCrosses = population.size() / 2;
-    int threads_num = 4;
+    int threads_num = 2;
     int step = (numberOfCrosses + threads_num - 1) / threads_num;
     vector <thread> myThreads;
     mutex m;
@@ -303,9 +303,12 @@ Tpopulation __crossover(Tpopulation &population) {
         if (numberOfCrosses <= 0) {
             break;
         }
-        thread(sub_cross, std::ref(population), std::ref(new_population), std::ref(m),
-               min(step, numberOfCrosses)).join();
+        myThreads.push_back(thread(sub_cross, std::ref(population), std::ref(new_population), std::ref(m),
+               min(step, numberOfCrosses)));
         numberOfCrosses -= step;
+    }
+    for(auto &t : myThreads) {
+        t.join();
     }
 
 

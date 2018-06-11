@@ -11,10 +11,13 @@
 #include <thread>
 #include <chrono>
 
-#define CHROMOSSOME_LENGHT 31
-#define RANGE_STANDARD 15
+#define PI 3.14159265
+#define SUB_CHROMOSSOME_LENGTH 20
+#define CHROMOSSOME_LENGHT 40
+#define RANGE_STANDARD 10
 
 #define P_m 0.05
+
 
 
 using namespace std;
@@ -29,6 +32,13 @@ long long upperBound = pow(2, RANGE_STANDARD) - 1;
 double step = 2 * (pow(2, RANGE_STANDARD) - 1) / double(pow(2.0, CHROMOSSOME_LENGHT) - 1);
 int threshold = CHROMOSSOME_LENGHT * CHROMOSSOME_LENGHT - 1;
 
+auto f2(double x, double y){ ;
+    return pow(pow(x, 2) + pow(y, 2), 0.5);
+}
+
+auto f3(double x1, double x2) {
+    return -20*exp(-0.2*sqrt(0.5*(pow(x1,2)+pow(x2,2))))-exp(0.5*(cos(2*PI*x2)+cos(2*PI*x1)))+20+exp(1);
+}
 
 inline std::chrono::steady_clock::time_point get_current_time_fenced() {
 //    assert(std::chrono::steady_clock::is_steady &&
@@ -45,9 +55,34 @@ inline long long to_us(const D &d) {
 }
 
 typedef struct individ {
-    bitset<CHROMOSSOME_LENGHT> chromossome;
+    individ() : chromossome(CHROMOSSOME_LENGHT) {}
+    vector<int> chromossome;
     long double fitness_value;
     double probability_of_selection;
+
+    unsigned long get_value1() {
+        int n = 0;
+        unsigned long result = 0;
+        for(int i=chromossome.size()/2-1; i>-1; i--) {
+            if(chromossome[i]) {
+                result += (unsigned long)pow(2, n);
+            }
+            n++;
+        }
+        return result;
+    }
+
+    unsigned long get_value2() {
+        int n = 0;
+        unsigned long result = 0;
+        for(int i=chromossome.size()-1; i>chromossome.size()/2-1; i--) {
+            if(chromossome[i]) {
+                result += (unsigned long)pow(2, n);
+            }
+            n++;
+        }
+        return result;
+    }
 
     void set_probability(long double sumOfFitness_value, long double min_value);
 
@@ -62,8 +97,9 @@ void individuals::set_probability(long double sumOfFitness_value, long double mi
 }
 
 void individuals::set_fitness_value() {
-    long double x = lowerBound + (double) step * chromossome.to_ullong();
-    fitness_value = f(x);
+    long double x1 = lowerBound + (double) step * get_value1();
+    long double x2 = lowerBound + (double) step * get_value2();
+    fitness_value = f3(x1, x2);
 }
 
 void setFitnessValue_forAll(Tpopulation &population) {
@@ -95,7 +131,7 @@ Tpopulation generatePopulation(const int amountOfIndividuals) {
 
     for (auto &p:population) {
         for (int i = 0; i < p.chromossome.size(); i++) {
-            p.chromossome.set(i, rand() % 2);
+            p.chromossome[i] =rand() % 2;
         }
     }
 
@@ -111,7 +147,7 @@ void mutation(individuals &individ) {
     int n = individ.chromossome.size();
     while (n > 0) {
         if (((double) rand() / (RAND_MAX)) <= P_m) {
-            individ.chromossome.flip(n - 1);
+            individ.chromossome[n - 1] = 1 - individ.chromossome[n-1];
         }
         --n;
     }
@@ -158,11 +194,11 @@ Tpopulation crossover(Tpopulation &population) {
 
         for (int i = 0; i < ind_1.chromossome.size(); i++) {
             if (i > position1) {
-                child_1.chromossome.set(i, ind_2.chromossome[i]);
-                child_2.chromossome.set(i, ind_1.chromossome[i]);
+                child_1.chromossome[i] = ind_2.chromossome[i];
+                child_2.chromossome[i] = ind_1.chromossome[i];
             } else {
-                child_1.chromossome.set(i, ind_1.chromossome[i]);
-                child_2.chromossome.set(i, ind_2.chromossome[i]);
+                child_1.chromossome[i] = ind_1.chromossome[i];
+                child_2.chromossome[i] = ind_2.chromossome[i];
             }
         }
         mutation(child_1);
@@ -186,13 +222,15 @@ int main(int argc, char *argv[]) {
 
 
     Tpopulation population;
+
     int size_of_population=10000;
+
     // cout << "Type the population size: ";
 //    cin >> size_of_population;
     population = generatePopulation(size_of_population);
 
     for (auto p:population) {
-        long double x = p.chromossome.to_ulong() * step + lowerBound;
+//        long double x = p.get_value() * step + lowerBound;
         // cout << "chromossome: " << p.chromossome << " fitness_value: " << p.fitness_value << " probability: "
           //   << p.probability_of_selection << " x = " << x << " f(x) = " << f(x) << endl;
     }
@@ -211,10 +249,10 @@ int main(int argc, char *argv[]) {
     }
 
     for (auto p:population) {
-        long double x = p.chromossome.to_ulong() * step + lowerBound;
-        // cout << "chromossome: " << p.chromossome << " fitness_value: " << p.fitness_value << " probability: "
-          //   << p.probability_of_selection << " x = " << x << " f(x) = " << f(x) << endl;
-        // cout << x << " " << f(x) << endl;
+        long double x1 = p.get_value1() * step + lowerBound;
+        long double x2 = p.get_value2() * step + lowerBound;
+         cout << " fitness_value: " << p.fitness_value << " probability: "
+             << p.probability_of_selection << " x1 = " << x1 << " x2 = " << x2 << " f(x) = " << f3(x1, x2) << endl;
     }
     auto time_ = get_current_time_fenced() - time;
     cout << to_us(time_) << endl;

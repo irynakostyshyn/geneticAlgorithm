@@ -226,6 +226,20 @@ individuals selectIndividual(Tpopulation population) {//select to crossover (nat
             return p;
     }
 }
+//k-value selection method
+individuals selectIndividualK(Tpopulation population) {
+    int k = 3;
+    srand(clock());
+    Tpopulation pop;
+    for (int r = 0; r<k; r++) {
+        int i = rand() % population.size();
+        pop.push_back(population[i]);
+    }
+    sort(pop.begin(), pop.end(), sort_Pop);
+    return pop[0];
+
+
+}
 
 void sub_cross(Tpopulation &population, Tpopulation &put, mutex &m, int n) {
     Tpopulation new_population;
@@ -403,12 +417,12 @@ Tpopulation crossover(Tpopulation &population, int n, float percent) {
     int numberOfCrosses = (int)(numberOfIndivids-n)*percent;
     int numberOfMutation = numberOfIndivids-n-numberOfCrosses;
     int threads_num = 2;
-
+    sort(population.begin(), population.end(), sort_Pop);
     for(int i = 0; i<n;i++){
-        individuals ind = selectIndividual(population);
+
         //population.erase(remove(population.begin(), population.end(), ind), population.end());
 
-        new_population.push_back(ind);
+        new_population.push_back(population[i]);
     }
     int step = (numberOfCrosses + threads_num - 1) / threads_num;
     vector <thread> myThreads;
@@ -449,7 +463,7 @@ int main(int argc, char *argv[]) {
     // cout << "Type the population size: ";
 //    cin >> size_of_population;
     population = generatePopulation(size_of_population);
-
+/*
     for (auto p:population) {
 //        long double x = p.chromossome.to_ulong() * step + lowerBound;
         // cout << "chromossome: " << p.chromossome << " fitness_value: " << p.fitness_value << " probability: "
@@ -477,6 +491,12 @@ int main(int argc, char *argv[]) {
     auto time_ = get_current_time_fenced() - time;
 
 
-    cout << to_us(time_) << endl;
+    cout << to_us(time_) << endl;*/
+    individuals ind = selectIndividualK(population);
+    cout<<ind.fitness_value<<endl;
+    individuals ind2 = selectIndividualK(population);
+    cout<<ind2.fitness_value<<endl;
+    individuals ind3 = selectIndividualK(population);
+    cout<<ind3.fitness_value<<endl;
     return 0;
 }

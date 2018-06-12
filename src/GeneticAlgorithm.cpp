@@ -32,8 +32,8 @@ void GeneticAlgorithm::update_fitness_values() {
     for(auto & individual : population.get_individuals()) {
         auto values = individual.get_values();
         vector<double> double_values;
-        for (int i=0; i < values.size(); i++) {
-            double_values.push_back(lower_bound + step * values[i]);
+        for (double & value : values) {
+            double_values.push_back(lower_bound + step * value);
         }
         auto result = f(double_values);
         individual.set_fitness_value(result);
@@ -41,3 +41,4 @@ void GeneticAlgorithm::update_fitness_values() {
     }
     population.update_probability(fitnessesSum);
 }
+

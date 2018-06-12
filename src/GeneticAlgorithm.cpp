@@ -31,10 +31,13 @@ void GeneticAlgorithm::update_fitness_values() {
     double fitnessesSum = 0.0;
     for(auto & individual : population.get_individuals()) {
         auto values = individual.get_values();
-        auto result = f(values);
+        vector<double> double_values;
+        for (int i=0; i < values.size(); i++) {
+            double_values.push_back(lower_bound + step * values[i]);
+        }
+        auto result = f(double_values);
         individual.set_fitness_value(result);
         fitnessesSum += result;
     }
     population.update_probability(fitnessesSum);
-
 }

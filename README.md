@@ -11,21 +11,22 @@ Despite this, there is an implementation of classes Individual and Population.
 
 
 
+
 **What is implemented?**
 
-> [Selection types](https://www.tutorialspoint.com/genetic_algorithms/genetic_algorithms_parent_selection.htm)
+> `[Selection types](https://www.tutorialspoint.com/genetic_algorithms/genetic_algorithms_parent_selection.htm)`
 
-*1) Roulette wheel selection*
-*2) K-Way tournament selection*
+1) Roulette wheel selection
+2) K-Way tournament selection
 
-> [Mutation](https://www.tutorialspoint.com/genetic_algorithms/genetic_algorithms_mutation.htm)
+> `[Mutation](https://www.tutorialspoint.com/genetic_algorithms/genetic_algorithms_mutation.htm)`
 
-*1) Bit Flip Mutation*
+1) Bit Flip Mutation
 
-> [Crossover](https://www.tutorialspoint.com/genetic_algorithms/genetic_algorithms_crossover.htm)
+> `[Crossover](https://www.tutorialspoint.com/genetic_algorithms/genetic_algorithms_crossover.htm)`
 
-*1) One Point Crossover*
-*2) Multi Point Crossover*
+1) One Point Crossover
+2) Multi Point Crossover
 
 
 **Usage**

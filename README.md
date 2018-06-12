@@ -12,9 +12,11 @@ Despite this, there is an implementation of classes Individual and Population.
 
 **Usage**
 
-'''
+```
 #include "GeneticAlgorithm.h"
-'''
+
+```
+
 
 
 **Contributors**

@@ -12,35 +12,30 @@
 using namespace std;
 
 class Population {
-    // individuals
-    unsigned int population_size;
     vector<Individual> individuals;
-    unsigned int chromosome_length;
-
-    // number of args of the function
-    unsigned int number_of_args;
 
     // working params
     long long elite_number;
     double crossover_percent;
     double mutation_probability;
-
-    // step of the population distribution
-    long double step;
-    // bounds
-    double lower_bound;
-    double upper_bound;
+    unsigned int number_of_args,
+    unsigned int chromosome_length
 public:
     Population(
             long long elite_number_,
             double crossover_percent_,
-            unsigned int number_of_args_,
-            function<double(vector<double>)> f_,
-            double lower_bound_, double upper_bound_,
             double mutation_probability_,
-            unsigned int chromosome_length_,
-            unsigned int population_size_
+            unsigned int population_size_,
+            unsigned int number_of_args_,
+            unsigned int chromosome_length_
     );
+    vector<Individual>& get_individuals();
+    void update_probability(const double & sum);
+    void sort();
+    void process_crossover();
+    void process_mutations();
+    void mutation(Individual &i);
+    Individual & select_roulette_individual();
 };
 
 

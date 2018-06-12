@@ -1,9 +1,8 @@
 #include "Individual.h"
 
-Individual::Individual(function<double(vector<double>)> f_, unsigned int number_of_args_,
+Individual::Individual(unsigned int number_of_args_,
                        unsigned int chromosome_length_) {
     srand(time(NULL));
-    f = std::move(f_);
     chromosome_length = chromosome_length_;
     for (auto i = 0; i < chromosome_length_ * number_of_args_; ++i) {
         chromosomes.emplace_back(rand() % 2);
@@ -27,4 +26,32 @@ void Individual::update_values() {
         values[current_ind] = number;
         current_ind++;
     };
+}
+
+vector<double> & Individual::get_values() {
+    return values;
+}
+
+void Individual::set_fitness_value(double val) {
+    fitness_value = val;
+}
+
+void Individual::update_probability(const double & sum) {
+    selection_probability = fitness_value / sum;
+}
+
+double Individual::get_fitness_value() const {
+    return fitness_value;
+}
+
+void Individual::set(unsigned long i, bool val) {
+    chromosomes[i] = val;
+}
+
+void Individual::set(Individual &o, unsigned long i) {
+    chromosomes[i] = o.chromosomes[i];
+}
+
+void Individual::flip(unsigned long i) {
+    chromosomes[i] = 1 - chromosomes[i];
 }

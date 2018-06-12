@@ -42,6 +42,7 @@ public:
     void process_crossover(bool percent_usage);
     void process_mutations(bool percent_usage);
     Individual & select_roulette_individual();
+    void print();
 };
 
 

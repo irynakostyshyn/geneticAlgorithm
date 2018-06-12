@@ -106,6 +106,13 @@ void Population::process_mutations(bool percent_usage) {
     }
 }
 
+void Population::print() {
+    for(auto & individ : individuals){
+        individ.print();
+    }
+
+}
+
 
 void basic_mutation(Individual &ind, double mutation_probability) {
     auto n = ind.size();

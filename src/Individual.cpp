@@ -1,3 +1,4 @@
+
 #include "Individual.h"
 
 Individual::Individual(unsigned int number_of_args_,
@@ -11,6 +12,7 @@ Individual::Individual(unsigned int number_of_args_,
 }
 
 void Individual::update_values() {
+    values = vector<double>(chromosomes.size() / chromosome_length);
     int number;
     int power;
     int current_ind = 0;
@@ -58,4 +60,9 @@ void Individual::flip(unsigned long i) {
 
 unsigned long Individual::size() {
     return chromosomes.size();
+}
+
+void Individual::print() {
+    cout<<"Individ fitness value: "<< fitness_value<<endl;
+
 }

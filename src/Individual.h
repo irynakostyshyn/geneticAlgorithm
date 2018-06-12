@@ -5,6 +5,7 @@
 #include <functional>
 #include <utility>
 #include <cmath>
+#include <iostream>
 
 using namespace std;
 
@@ -39,6 +40,7 @@ public:
     void set(Individual & o, unsigned long i);
     void flip(unsigned long i);
     unsigned long size();
+    void print();
 };
 
 #endif //INDIVIDUAL_H

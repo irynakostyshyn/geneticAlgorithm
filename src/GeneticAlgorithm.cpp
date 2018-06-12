@@ -40,5 +40,19 @@ void GeneticAlgorithm::update_fitness_values() {
         fitnessesSum += result;
     }
     population.update_probability(fitnessesSum);
+
+}
+
+void GeneticAlgorithm::iterate_until(unsigned long numb_itr) {
+    update_fitness_values();
+    while (numb_itr>0){
+        --numb_itr;
+        population.process_crossover(false);
+        population.process_mutations(false);
+        update_fitness_values();
+    }
+    population.print();
+
+
 }
 

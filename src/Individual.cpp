@@ -55,3 +55,7 @@ void Individual::set(Individual &o, unsigned long i) {
 void Individual::flip(unsigned long i) {
     chromosomes[i] = 1 - chromosomes[i];
 }
+
+unsigned long Individual::size() {
+    return chromosomes.size();
+}

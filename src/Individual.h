@@ -38,6 +38,7 @@ public:
     void set(unsigned long i, bool val);
     void set(Individual & o, unsigned long i);
     void flip(unsigned long i);
+    unsigned long size();
 };
 
 #endif //INDIVIDUAL_H

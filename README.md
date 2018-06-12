@@ -18,7 +18,6 @@ Despite this, there is an implementation of classes Individual and Population.
 ```
 
 
-
 **Contributors**
 
 Kostiantyn Liepieshov, Iryna Kostyshyn, Victoria Yuzkiv

@@ -191,6 +191,10 @@ Tpopulation generatePopulation(const int amountOfIndividuals) {
 //insertion sort
 void sortPopulation(Tpopulation &population);
 
+bool sort_Pop(individuals ind1, individuals ind2){
+    return ind1.fitness_value>ind2.fitness_value;
+}
+
 //mutation by swap mutation
 void mutation(individuals &individ) {
     int n = individ.chromossome.size();

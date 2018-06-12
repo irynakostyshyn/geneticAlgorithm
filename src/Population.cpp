@@ -96,7 +96,7 @@ Individual &Population::select_roulette_individual() {
 
 void Population::process_mutations() {
     int number_of_pairs = ((int) ((individuals.size() - elite_number) * crossover_percent)) / 2;
-    for(int i=elite_number + number_of_pairs * 2; i<individuals.size(); ++i) {
+    for(auto i=elite_number + number_of_pairs * 2; i<individuals.size(); ++i) {
         mutation(individuals[i]);
     }
 }

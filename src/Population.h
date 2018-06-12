@@ -1,7 +1,6 @@
 #ifndef POPULATION_H
 #define POPULATION_H
 
-
 #include <vector>
 #include <functional>
 #include <iostream>
@@ -18,8 +17,8 @@ class Population {
     long long elite_number;
     double crossover_percent;
     double mutation_probability;
-    unsigned int number_of_args,
-    unsigned int chromosome_length
+    unsigned int number_of_args;
+    unsigned int chromosome_length;
 public:
     Population(
             long long elite_number_,

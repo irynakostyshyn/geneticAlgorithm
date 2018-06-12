@@ -43,6 +43,9 @@ public:
     );
 
     void update_fitness_values();
+    void iterate_until(unsigned long numb_itr);
+
+
 };
 
 #endif //GENETICALGORITHM_H

@@ -11,6 +11,9 @@
 
 using namespace std;
 
+void basic_mutation(Individual &ind, double mutation_probability);
+void crossover_with_one_point(Individual &par1, Individual &par2, Individual &ch1, Individual &ch2);
+
 class Population {
     vector<Individual> individuals;
 
@@ -18,8 +21,10 @@ class Population {
     long long elite_number;
     double crossover_percent;
     double mutation_probability;
-    unsigned int number_of_args,
-    unsigned int chromosome_length
+    unsigned int number_of_args;
+    unsigned int chromosome_length;
+    function<void(Individual&, double)> mutation;
+    function<void(Individual&, Individual&, Individual&, Individual&)> crossover;
 public:
     Population(
             long long elite_number_,
@@ -32,9 +37,8 @@ public:
     vector<Individual>& get_individuals();
     void update_probability(const double & sum);
     void sort();
-    void process_crossover();
-    void process_mutations();
-    void mutation(Individual &i);
+    void process_crossover(bool percent_usage);
+    void process_mutations(bool percent_usage);
     Individual & select_roulette_individual();
 };
 

@@ -1,7 +1,6 @@
 #ifndef POPULATION_H
 #define POPULATION_H
 
-
 #include <vector>
 #include <functional>
 #include <iostream>
@@ -30,7 +29,6 @@ class Population {
     double mutation_probability;
     unsigned int number_of_args;
     unsigned int chromosome_length;
-
     function<void(Individual&, double)> mutation;
     function<void(Individual&, Individual&, Individual&, Individual&)> crossover;
     function<Individual(vector<Individual>&)> selection;

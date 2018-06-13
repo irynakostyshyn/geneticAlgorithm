@@ -30,11 +30,11 @@ vector<Individual> &Population::get_individuals() {
     return individuals;
 }
 
-void Population::update_probability(const double &sum) {
-    for (auto &individual: individuals) {
-        individual.update_probability(sum);
-    }
-}
+//void Population::update_probability(const double &sum) {
+//    for (auto &individual: individuals) {
+//        individual.update_probability(sum);
+//    }
+//}
 
 void Population::sort() {
     std::sort(individuals.begin(), individuals.end(),
@@ -104,7 +104,6 @@ void Population::print() {
 }
 
 void Population::set_mutation(function<void(Individual &, double)> mutation_) {
-
     mutation = std::move(mutation_);
 }
 
@@ -147,17 +146,21 @@ bool sort_Pop(Individual ind1, Individual ind2) {
 }
 
 Individual select_roulette_individual(vector<Individual> &individuals) {
-    double sum = 1.0;
+    double sum = 0.0;
 
-    double selectedValue = rand() % (int) sum;
+    for(auto & i: individuals) {
+        sum += i.fitness_value;
+    }
+
+    double selectedValue = rand() % (long long) sum;
     double aux = 0.0;//used to sum fitness value
 
-//    Individual * i2;
     for (auto &i:individuals) {
-        aux += i.selection_probability;
+        aux += i.fitness_value;
         if (aux >= selectedValue)
             return i;
     }
+    return individuals.front();
 }
 
 Individual select_k(vector<Individual> &individuals) {
@@ -170,7 +173,6 @@ Individual select_k(vector<Individual> &individuals) {
     }
     sort(pop.begin(), pop.end(), sort_Pop);
     return pop[0];
-//    return individuals[0];
 }
 
 void crossover_with_two_point(Individual &par1, Individual &par2, Individual &ch1, Individual &ch2) {
@@ -195,6 +197,4 @@ void swap_mutation(Individual &ind, double mutation_probability) {
     if (((double) rand() / (RAND_MAX)) <= mutation_probability) {
         ind.swap(position1, position2);
     }
-
-
 }

@@ -9,7 +9,7 @@
 
 
 
-#include "Individual.h"
+#include "../Individual/Individual.h"
 
 using namespace std;
 
@@ -31,10 +31,11 @@ class Population {
     double mutation_probability;
     unsigned int number_of_args;
     unsigned int chromosome_length;
+
+    // functions that are changeable
     function<void(Individual&, double)> mutation;
     function<void(Individual&, Individual&, Individual&, Individual&)> crossover;
     function<Individual(vector<Individual>&)> selection;
-
 
 public:
     Population(
@@ -46,7 +47,6 @@ public:
             unsigned int chromosome_length_
     );
     vector<Individual>& get_individuals();
-    void update_probability(const double & sum);
     void sort();
     void process_crossover(bool percent_usage);
     void process_mutations(bool percent_usage);

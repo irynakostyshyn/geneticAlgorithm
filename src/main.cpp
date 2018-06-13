@@ -1,6 +1,6 @@
 #include <iostream>
 
-#include "GeneticAlgorithm.h"
+#include "GeneticAlgorithm/GeneticAlgorithm.h"
 
 #define PI 3.14159265
 

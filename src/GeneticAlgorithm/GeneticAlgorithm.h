@@ -6,8 +6,8 @@
 #include <iostream>
 #include <utility>
 
-#include "ThreadedFunctions.h"
-#include "Population.h"
+#include "../ThreadedFunctions/ThreadedFunctions.h"
+#include "../Population/Population.h"
 
 class GeneticAlgorithm {
     Population population;

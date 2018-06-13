@@ -12,7 +12,7 @@ double f3(vector<double> args) {
 }
 
 int main() {
-    GeneticAlgorithm geneticAlgorithm(2, 0.8, 2, f3, -100, 100, 0.05, 24, 100);
+    GeneticAlgorithm geneticAlgorithm(2, 0.8, 2, f3, -100, 100, 0.05, 24, 100, 4);
     //geneticAlgorithm.update_fitness_values();
     geneticAlgorithm.iterate_until(5);
 }

@@ -47,10 +47,11 @@ void Population::sort() {
 void Population::process_crossover(bool percent_usage) {
     vector<Individual> new_individuals;
 
+    sort();
+
     int number_of_pairs;
     if (percent_usage) {
         number_of_pairs = ((int) ((individuals.size() - elite_number) * crossover_percent)) / 2;
-        sort();
     } else {
         number_of_pairs = ((int) (individuals.size() - elite_number)) / 2;
     }

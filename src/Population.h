@@ -14,6 +14,7 @@
 using namespace std;
 
 void basic_mutation(Individual &ind, double mutation_probability);
+void swap_mutation(Individual &ind, double mutation_probability);
 void crossover_with_one_point(Individual &par1, Individual &par2, Individual &ch1, Individual &ch2);
 void crossover_with_two_point(Individual &par1, Individual &par2, Individual &ch1, Individual &ch2);
 Individual select_roulette_individual(vector<Individual>& individuals);

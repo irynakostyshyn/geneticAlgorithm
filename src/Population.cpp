@@ -186,3 +186,14 @@ void crossover_with_two_point(Individual &par1, Individual &par2, Individual &ch
         }
     }
 }
+
+void swap_mutation(Individual &ind, double mutation_probability) {
+    auto n = ind.size();
+    auto position1 = rand() % n;
+    auto position2 = rand() % n;
+    if (((double) rand() / (RAND_MAX)) <= mutation_probability) {
+        ind.swap(position1, position2);
+    }
+
+
+}

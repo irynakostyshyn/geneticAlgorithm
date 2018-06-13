@@ -39,6 +39,7 @@ public:
     void set(unsigned long i, bool val);
     void set(Individual & o, unsigned long i);
     void flip(unsigned long i);
+    void swap(unsigned long position1, unsigned long position2);
     unsigned long size();
     void print();
 };

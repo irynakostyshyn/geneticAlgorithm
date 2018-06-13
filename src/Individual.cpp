@@ -8,7 +8,7 @@ Individual::Individual(unsigned int number_of_args_,
     for (auto i = 0; i < chromosome_length_ * number_of_args_; ++i) {
         chromosomes.emplace_back(rand() % 2);
     }
-    update_values();
+    //update_values();
 }
 
 void Individual::update_values() {
@@ -63,6 +63,15 @@ unsigned long Individual::size() {
 }
 
 void Individual::print() {
-    cout<<"Individ fitness value: "<< fitness_value<<endl;
+    cout<<"Individ"<<endl;
+    for(int i = 0; i<values.size(); i++){
+        cout<<"x"<<i+1<<": "<<values[i]<<"  ";
+    }
+    cout<<"\nFitness value: "<< fitness_value<<endl;
+}
 
+void Individual::swap(unsigned long position1, unsigned long position2) {
+    auto sw = chromosomes[position1];
+    chromosomes[position1] = chromosomes[position2];
+    chromosomes[position2] = sw;
 }

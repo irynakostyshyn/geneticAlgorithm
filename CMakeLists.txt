@@ -3,6 +3,9 @@ cmake_minimum_required(VERSION 3.9)
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+set(CMAKE_CXX_FLAGS_DEBUG "-Og")
+set(CMAKE_CXX_FLAGS_RELEASE "-O3")
+
 project(geneticAlgorithm)
 find_package(Threads)
 

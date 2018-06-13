@@ -46,6 +46,7 @@ public:
             unsigned int chromosome_length_
     );
     vector<Individual>& get_individuals();
+    Individual get_individual();
     void update_probability(const double & sum);
     void sort();
     void process_crossover(bool percent_usage);

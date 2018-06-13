@@ -68,3 +68,9 @@ void GeneticAlgorithm::update_fitness_values_threaded() {
     population.update_probability(fitnessesSum);
 }
 
+void GeneticAlgorithm::find_max() {
+    population.sort();
+    population.get_individual();
+
+}
+

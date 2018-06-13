@@ -116,6 +116,16 @@ void Population::set_crossover(function<Individual(vector<Individual> &)> select
     selection = std::move(selection_);
 }
 
+Individual Population::get_individual() {
+    cout<<"\nMax: "<<endl;
+    auto values = individuals[0].get_values();
+    for(auto v : values){
+        cout<< "X :"<< v<<endl;
+    }
+
+    return individuals[0];
+}
+
 
 void basic_mutation(Individual &ind, double mutation_probability) {
     auto n = ind.size();

@@ -6,10 +6,14 @@
 #include <iostream>
 #include <utility>
 
+#include "ThreadedFunctions.h"
 #include "Population.h"
 
 class GeneticAlgorithm {
     Population population;
+
+    // number of threads
+    unsigned int threads_number;
 
     // individuals
     unsigned int population_size;
@@ -39,13 +43,14 @@ public:
             double lower_bound_, double upper_bound_,
             double mutation_probability_,
             unsigned int chromosome_length_,
-            unsigned int population_size_
+            unsigned int population_size_,
+            unsigned int threads_number_
     );
 
     void update_fitness_values();
+    void update_fitness_values_threaded();
+
     void iterate_until(unsigned long numb_itr);
-
-
 };
 
 #endif //GENETICALGORITHM_H

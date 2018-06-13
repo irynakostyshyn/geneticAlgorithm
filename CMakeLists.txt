@@ -7,6 +7,9 @@ set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 project (geneticAlgorithm)
+find_package(Threads)
 
-add_executable(genetic src/main.cpp src/Population.cpp src/Population.h src/Individual.cpp src/Individual.h src/GeneticAlgorithm.cpp src/GeneticAlgorithm.h)
 
+
+add_executable(genetic src/main.cpp src/Population.cpp src/Population.h src/Individual.cpp src/Individual.h src/GeneticAlgorithm.cpp src/GeneticAlgorithm.h src/ThreadedFunctions.cpp src/ThreadedFunctions.h)
+target_link_libraries( genetic ${CMAKE_THREAD_LIBS_INIT} )

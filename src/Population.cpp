@@ -1,6 +1,8 @@
 #include "Population.h"
 
 
+
+
 Population::Population(
         long long elite_number_,
         double crossover_percent_,
@@ -35,11 +37,11 @@ void Population::update_probability(const double &sum) {
 }
 
 void Population::sort() {
-    //TODO: Sorting
-//    sort(individuals.begin(),
-//         individuals.end(), [](auto &&i1, auto &&i2) {
-//                return i1.fitness_value < i2.fitness_value;
-//            });
+    std::sort(individuals.begin(), individuals.end(),
+         [this](const Individual &ind1, const Individual &ind2) {
+             return ind1.fitness_value > ind2.fitness_value;
+         }
+    );
 }
 
 void Population::process_crossover(bool percent_usage) {
@@ -48,10 +50,13 @@ void Population::process_crossover(bool percent_usage) {
     int number_of_pairs;
     if (percent_usage) {
         number_of_pairs = ((int) ((individuals.size() - elite_number) * crossover_percent)) / 2;
+        sort();
     } else {
         number_of_pairs = ((int) (individuals.size() - elite_number)) / 2;
     }
-
+    for(int i = 0; i < elite_number; ++i){
+        new_individuals.push_back(individuals[i]);
+    }
 
     for (int i = 0; i < number_of_pairs; ++i) {
         srand(clock());
@@ -95,6 +100,19 @@ void Population::print() {
         individ.print();
     }
 
+}
+
+void Population::set_mutation(function<void(Individual &, double)> mutation_) {
+
+    mutation = std::move(mutation_);
+}
+
+void Population::set_selection(function<void(Individual &, Individual &, Individual &, Individual &)> crossover_) {
+    crossover = std::move(crossover_);
+}
+
+void Population::set_crossover(function<Individual(vector<Individual> &)> selection_) {
+    selection = std::move(selection_);
 }
 
 

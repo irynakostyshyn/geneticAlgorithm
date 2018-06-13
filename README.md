@@ -10,12 +10,31 @@ The main class that users use is GeneticAlgorithm.
 Despite this, there is an implementation of classes Individual and Population.
 
 
+
+**What is implemented?**
+
+> [Selection types](https://www.tutorialspoint.com/genetic_algorithms/genetic_algorithms_parent_selection.htm)
+
+1) Roulette wheel selection
+2) K-Way tournament selection
+
+> [Mutation](https://www.tutorialspoint.com/genetic_algorithms/genetic_algorithms_mutation.htm)
+
+1) Bit Flip Mutation
+
+> [Crossover](https://www.tutorialspoint.com/genetic_algorithms/genetic_algorithms_crossover.htm)
+
+1) One Point Crossover
+2) Multi Point Crossover
+
+
 **Usage**
 
 ```
 #include "GeneticAlgorithm.h"
-
 ```
+
+Example of usage you can find in the directory `tests`.
 
 
 **Contributors**

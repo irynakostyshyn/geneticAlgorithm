@@ -8,6 +8,7 @@
 #include <algorithm>
 
 
+
 #include "Individual.h"
 
 using namespace std;
@@ -49,6 +50,9 @@ public:
     void process_crossover(bool percent_usage);
     void process_mutations(bool percent_usage);
     void print();
+    void set_mutation(function<void(Individual&, double)> mutation_);
+    void set_selection(function<void(Individual&, Individual&, Individual&, Individual&)> crossover_);
+    void set_crossover(function<Individual(vector<Individual>&)> selection_);
 };
 
 

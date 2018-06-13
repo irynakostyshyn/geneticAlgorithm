@@ -3,7 +3,7 @@
 
 Individual::Individual(unsigned int number_of_args_,
                        unsigned int chromosome_length_) {
-    srand(time(NULL));
+    srand(clock());
     chromosome_length = chromosome_length_;
     for (auto i = 0; i < chromosome_length_ * number_of_args_; ++i) {
         chromosomes.emplace_back(rand() % 2);

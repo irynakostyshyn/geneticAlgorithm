@@ -17,6 +17,7 @@ It is created to find `the optimal solution` (maximum of a function).
 > [Mutation](https://www.tutorialspoint.com/genetic_algorithms/genetic_algorithms_mutation.htm) :
 
 1) Bit Flip Mutation
+2) Swap Mutation
 
 > [Crossover](https://www.tutorialspoint.com/genetic_algorithms/genetic_algorithms_crossover.htm) :
 

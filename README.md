@@ -36,8 +36,7 @@ It is created to find `the optimal solution` (maximum of a function).
 using namespace std;
 
 double function(vector<double> args) {
-    return 20 * exp(-0.2 * sqrt(0.5 * (pow(args[0], 2) + pow(args[1], 2)))) -
-           exp(0.5 * (cos(2 * PI * args[1]) + cos(2 * PI * args[0]))) + 20 + exp(1);
+    return exp(-(pow((args[0]-PI),2)+pow((args[1]-PI),2)));
 }
 
 
@@ -61,7 +60,7 @@ int main() {
 }
 ```
 
-Example of usage you can find in the directory `tests`.
+Example of usage you can find in the directory `test`.
 
 
 **Contributors**

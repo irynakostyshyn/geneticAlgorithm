@@ -174,12 +174,13 @@ Individual select_k(vector<Individual> &individuals) {
 
 void crossover_with_two_point(Individual &par1, Individual &par2, Individual &ch1, Individual &ch2) {
     unsigned long position1 = rand() % (par1.size());
-    unsigned long position2 = rand() % (par1.size()-position1)+position1;
+    unsigned long position2 = rand() % (par1.size() - position1) + position1;
     for (auto bit_i = 0UL; bit_i < par1.size(); bit_i++) {
         if (bit_i < position1) {
             ch1.set(par2, bit_i);
             ch2.set(par1, bit_i);
-        } if (bit_i > position2) {
+        }
+        if (bit_i > position2) {
             ch1.set(par2, bit_i);
             ch2.set(par1, bit_i);
         }

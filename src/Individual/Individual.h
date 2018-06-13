@@ -17,11 +17,9 @@ class Individual {
     // indexes of steps
     vector<double> values;
 
-
-
 public:
     // Probability
-    double selection_probability;
+//    double selection_probability;
     // fitness
     double fitness_value;
 
@@ -30,12 +28,12 @@ public:
             unsigned int chromosome_length_
     );
 
-    void update_values();
+    void update_values(long double &step, double &lower_bound);
 
     vector<double> &get_values();
     void set_fitness_value(double val);
     double get_fitness_value() const;
-    void update_probability(const double & sum);
+//    void update_probability(const double & sum);
     void set(unsigned long i, bool val);
     void set(Individual & o, unsigned long i);
     void flip(unsigned long i);

@@ -11,5 +11,5 @@ find_package(Threads)
 
 
 
-add_executable(genetic src/main.cpp src/Population.cpp src/Population.h src/Individual.cpp src/Individual.h src/GeneticAlgorithm.cpp src/GeneticAlgorithm.h src/ThreadedFunctions.cpp src/ThreadedFunctions.h)
+add_executable(genetic src/main.cpp src/Population/Population.cpp src/Population/Population.h src/Individual/Individual.cpp src/Individual/Individual.h src/GeneticAlgorithm/GeneticAlgorithm.cpp src/GeneticAlgorithm/GeneticAlgorithm.h src/ThreadedFunctions/ThreadedFunctions.cpp src/ThreadedFunctions/ThreadedFunctions.h)
 target_link_libraries( genetic ${CMAKE_THREAD_LIBS_INIT} )

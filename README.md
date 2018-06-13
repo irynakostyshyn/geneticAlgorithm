@@ -9,16 +9,16 @@ It is created to find `the optimal solution` (maximum of a function).
 
 **What is implemented?**
 
-> [Selection types](https://www.tutorialspoint.com/genetic_algorithms/genetic_algorithms_parent_selection.htm)
+> [Selection types](https://www.tutorialspoint.com/genetic_algorithms/genetic_algorithms_parent_selection.htm) :
 
 1) Roulette wheel selection
 2) K-Way tournament selection
 
-> [Mutation](https://www.tutorialspoint.com/genetic_algorithms/genetic_algorithms_mutation.htm)
+> [Mutation](https://www.tutorialspoint.com/genetic_algorithms/genetic_algorithms_mutation.htm) :
 
 1) Bit Flip Mutation
 
-> [Crossover](https://www.tutorialspoint.com/genetic_algorithms/genetic_algorithms_crossover.htm)
+> [Crossover](https://www.tutorialspoint.com/genetic_algorithms/genetic_algorithms_crossover.htm) :
 
 1) One Point Crossover
 2) Multi Point Crossover
@@ -27,7 +27,12 @@ It is created to find `the optimal solution` (maximum of a function).
 **Usage**
 
 ```
+#include <iostream>
 #include "GeneticAlgorithm.h"
+
+#define PI 3.14159265
+
+using namespace std;
 
 double function(vector<double> args) {
     return 20 * exp(-0.2 * sqrt(0.5 * (pow(args[0], 2) + pow(args[1], 2)))) -

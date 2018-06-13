@@ -29,20 +29,12 @@ GeneticAlgorithm::GeneticAlgorithm(
 }
 
 void GeneticAlgorithm::update_fitness_values() {
-
-    double fitnessesSum = 0.0;
-    for(auto & individual : population.get_individuals()) {
-        individual.update_values();
+    for (auto &individual : population.get_individuals()) {
+        individual.update_values(step, lower_bound);
         auto values = individual.get_values();
-        vector<double> double_values;
-        for (double & value : values) {
-            double_values.push_back(lower_bound + step * value);
-        }
-        auto result = f(double_values);
+        auto result = f(values);
         individual.set_fitness_value(result);
-        fitnessesSum += result;
     }
-    population.update_probability(fitnessesSum);
 }
 
 void GeneticAlgorithm::iterate_until(unsigned long numb_itr) {
@@ -58,15 +50,13 @@ void GeneticAlgorithm::iterate_until(unsigned long numb_itr) {
 
     }
     population.print();
-
-
 }
 
 void GeneticAlgorithm::update_fitness_values_threaded() {
-    double fitnessesSum = fitness_value_threads_divider(population.get_individuals(), f, step, lower_bound,
-                                                        threads_number);
-    population.update_probability(fitnessesSum);
+    fitness_value_threads_divider(population.get_individuals(), f, step, lower_bound,
+                                  threads_number);
 }
+
 
 void GeneticAlgorithm::find_max() {
     population.sort();

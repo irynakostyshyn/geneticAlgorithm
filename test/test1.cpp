@@ -28,7 +28,24 @@ double f(vector<double> args) {
 
 
 int main() {
-    GeneticAlgorithm geneticAlgorithm(10, 0.6, 2, f, -100, 100, 0.05, 24, 100, 4);
+    long long int elite_number = 10;
+    double crossover_percent = 0.6;
+    unsigned int number_of_args = 2;
+    const function<double(vector<double>)> &func = f;
+    double lower_bound = -100;
+    double upper_bound = 100;
+    double mutation_probability = 0.05;
+    unsigned int chromosome_length = 24;
+    unsigned int population_size = 100;
+    unsigned int threads_number = 4;
+
+    GeneticAlgorithm geneticAlgorithm(
+            elite_number, crossover_percent, number_of_args,
+            func,
+            lower_bound, upper_bound, mutation_probability,
+            chromosome_length, population_size,
+            threads_number
+    );
     auto start = get_current_time_fenced();
 
     geneticAlgorithm.iterate_until(1000, true);

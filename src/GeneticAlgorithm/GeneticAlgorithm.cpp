@@ -37,17 +37,26 @@ void GeneticAlgorithm::update_fitness_values() {
     }
 }
 
-void GeneticAlgorithm::iterate_until(unsigned long numb_itr) {
-//        update_fitness_values();
+void GeneticAlgorithm::iterate_until(unsigned long numb_itr, bool parallel) {
+    if(parallel) {
         update_fitness_values_threaded();
+    }
+    else {
+        update_fitness_values();
+    }
     while (numb_itr > 0) {
         --numb_itr;
         population.process_crossover(true);
         population.process_mutations(false);
-        update_fitness_values_threaded();
-        population.print();
+        if(parallel) {
+            update_fitness_values_threaded();
+        }
+        else {
+            update_fitness_values();
+        }
+//        population.print();
     }
-    population.print();
+//    population.print();
 }
 
 void GeneticAlgorithm::update_fitness_values_threaded() {
@@ -60,4 +69,3 @@ void GeneticAlgorithm::find_max() {
     population.sort();
     population.get_individual();
 }
-

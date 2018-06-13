@@ -31,7 +31,7 @@ int main() {
     GeneticAlgorithm geneticAlgorithm(10, 0.6, 2, f, -100, 100, 0.05, 24, 100, 4);
     auto start = get_current_time_fenced();
 
-    geneticAlgorithm.iterate_until(55);
+    geneticAlgorithm.iterate_until(1000, true);
     auto finish = get_current_time_fenced() - start;
 
     geneticAlgorithm.find_max();

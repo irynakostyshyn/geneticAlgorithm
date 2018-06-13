@@ -50,7 +50,7 @@ public:
     void update_fitness_values();
     void update_fitness_values_threaded();
     void find_max();
-    void iterate_until(unsigned long numb_itr);
+    void iterate_until(unsigned long numb_itr, bool parallel);
 };
 
 #endif //GENETICALGORITHM_H

@@ -116,11 +116,12 @@ void Population::set_crossover(function<Individual(vector<Individual> &)> select
 }
 
 Individual Population::get_individual() {
-    cout<<"\nMax: "<<endl;
+    std::cout<< std::endl << "Max: "<<std::endl;
     auto values = individuals[0].get_values();
-    for(auto v : values){
-        cout<< "X :"<< v<<endl;
+    for(auto & v : values){
+        cout<< "X :"<< v <<endl;
     }
+    std::cout << "Y:" << individuals[0].fitness_value << std::endl;
 
     return individuals[0];
 }

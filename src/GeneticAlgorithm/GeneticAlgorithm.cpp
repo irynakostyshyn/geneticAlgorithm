@@ -38,16 +38,14 @@ void GeneticAlgorithm::update_fitness_values() {
 }
 
 void GeneticAlgorithm::iterate_until(unsigned long numb_itr) {
-    update_fitness_values();
-//    update_fitness_values_threaded();
+//        update_fitness_values();
+        update_fitness_values_threaded();
     while (numb_itr > 0) {
         --numb_itr;
         population.process_crossover(true);
         population.process_mutations(false);
-        update_fitness_values();
-//        update_fitness_values_threaded();
+        update_fitness_values_threaded();
         population.print();
-
     }
     population.print();
 }
@@ -61,6 +59,5 @@ void GeneticAlgorithm::update_fitness_values_threaded() {
 void GeneticAlgorithm::find_max() {
     population.sort();
     population.get_individual();
-
 }
 
